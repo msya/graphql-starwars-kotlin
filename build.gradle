@@ -13,6 +13,9 @@ buildscript {
 }
 
 apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = "com.graphql.starwars.server.StarWarsServerApplication"
 
 repositories {
     mavenCentral()

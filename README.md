@@ -8,6 +8,16 @@ It has a schema for this data and defines queries for it. The server uses Spark 
 _/graphQL_
   - __query__: GraphQL query to parse.
   - __variables__: any variables for the query.
+  
+#### Example Usage
+1. Start the 'StarWarsServerApplication': 
+    ```
+    ./gradlew run
+    ```
+1. Use curl to query the graphql end point.
+    ```
+    curl -i -H "Content-Type:application/graphql"  -d '{"query": "{hero {id,name}}"}' http://localhost:4567/graphql
+    ```
 
 #### Schema
 
