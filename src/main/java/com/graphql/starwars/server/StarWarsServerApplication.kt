@@ -74,7 +74,7 @@ object StarWarsServerApplication {
             executionResult.errors.isNotEmpty() ->
                 result.put("errors", executionResult.errors)
             else ->
-                result.put("data", executionResult.data)
+                result.put("data", executionResult.getData())
         }
         return result
     }

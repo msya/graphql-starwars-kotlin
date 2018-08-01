@@ -10,7 +10,7 @@ import graphql.schema.GraphQLObjectType
  * Create review type.
  */
 val createReview: GraphQLObjectType =
-        newObject("Create Review")
+        newObject("CreateReview")
                 .field("stars"
                         ..GraphQLString
                         description "The number of stars for the movie.")

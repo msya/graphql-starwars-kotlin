@@ -45,7 +45,7 @@ object StarWarsDataUtils {
      * Get friends of a character.
      */
     val friendsDataFetcher = DataFetcher {
-        (it.source as StarWarsCharacter)
+        (it.getSource<StarWarsCharacter>())
                 .friends
                 .map { getCharacter(it) }
                 .toList()
@@ -55,7 +55,7 @@ object StarWarsDataUtils {
      * Height data fetcher.
      */
     val heightDataFetcher = DataFetcher {
-        val height = (it.source as StarWarsCharacter).height
+        val height = (it.getSource<StarWarsCharacter>()).height
         if (it.arguments["unit"] == unit.values[0].name) {
             height/0.3048
         }
@@ -65,10 +65,11 @@ object StarWarsDataUtils {
     /**
      * Type resolver.
      */
-    val characterTypeResolver = TypeResolver {
+    val characterTypeResolver = TypeResolver { /*it:TypeResolutionEnvironment! =>*/
+        val o = it.getObject<StarWarsCharacter>()
         when {
-            humanData.containsValue(it) -> humanType
-            droidData.containsValue(it) -> droidType
+            humanData.containsValue(o) -> humanType
+            droidData.containsValue(o) -> droidType
             else -> null
         }
     }
