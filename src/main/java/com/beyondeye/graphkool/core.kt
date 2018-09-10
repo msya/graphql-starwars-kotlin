@@ -12,6 +12,10 @@ fun newGraphQL(schema: GraphQLSchema, executionStrategy: ExecutionStrategy?=null
 fun newObject(name:String)= GraphQLObjectType.newObject().name(name)
 fun newEnum(name:String)= GraphQLEnumType.newEnum().name(name)
 fun newInterface(name:String)=GraphQLInterfaceType.newInterface().name(name)
+fun newField(name_: String, type_: GraphQLOutputType): GraphQLFieldDefinition.Builder {
+    return GraphQLFieldDefinition.newFieldDefinition().type(type_).name(name_)
+}
+
 infix fun String.ofType(type_: GraphQLOutputType): GraphQLFieldDefinition.Builder {
     return GraphQLFieldDefinition.newFieldDefinition().type(type_).name(this)
 }
@@ -23,7 +27,6 @@ operator fun GraphQLType.not() = GraphQLNonNull(this)
 infix fun GraphQLFieldDefinition.Builder.staticValue(value:Any) = this.staticValue(value)
 infix fun GraphQLFieldDefinition.Builder.description(d:String) = this.description(d)
 infix fun <T> GraphQLFieldDefinition.Builder.dataFetcher(fetcher:DataFetcher<T>) = this.dataFetcher(fetcher)
-
 
 fun newGraphQLSchema( query: GraphQLObjectType.Builder)= GraphQLSchema.newSchema().query(query)
 
