@@ -8,9 +8,9 @@ It has a schema for this data and defines queries for it. The server uses Spark 
 _/graphQL_
   - __query__: GraphQL query to parse.
   - __variables__: any variables for the query.
-  
+
 #### Example Usage
-1. Start the 'StarWarsServerApplication': 
+1. Start the 'StarWarsServerApplication':
     ```
     ./gradlew run
     ```
@@ -32,6 +32,5 @@ _/graphQL_
 
 #### Libraries
 - [GraphQL Java](https://github.com/graphql-java/graphql-java)
-- [GraphKool](https://github.com/beyondeye/graphkool)
 - [Spark Java](https://github.com/perwendel/spark)
 - [Jackson Kotlin](https://github.com/FasterXML/jackson-module-kotlin)

@@ -22,27 +22,27 @@ object StarWarsSchema {
      */
     val queryType: GraphQLObjectType.Builder =
             newObject("QueryType")
-                    .field("hero"
-                            ..characterInterface
-                            argument (+"episode"..episodeNum description "If omitted, returns the hero of the whole saga. If provided, returns the hero of that particular episode.")
-                            dataFetcher StarWarsDataUtils.heroDataFetcher)
+                    .field(newField("hero",characterInterface)
+                            .argument(+"episode"..episodeNum
+                                    description "If omitted, returns the hero of the whole saga. If provided, returns the hero of that particular episode.")
+                            .dataFetcher(StarWarsDataUtils.heroDataFetcher))
                     .field("human"
                             ..humanType
                             argument (+"id"..!GraphQLString description "id of the human")
                             dataFetcher StarWarsDataUtils.humanDataFetcher)
                     .field("droid"
                             ..droidType
-                            argument (+"id"..!GraphQLString description "id of the droid")
+                            argument (GQLArgumentBuilder("id").type(GraphQLString).description("id of the droid"))
                             dataFetcher StarWarsDataUtils.droidDataFetcher)
 
     /**
      * Mutation type.
      */
     val mutation: GraphQLObjectType.Builder = newObject("Mutation")
-            .field("createReview"..createReview
-                    argument (+"ep"..episodeNum)
-                    argument (+"review"..review)
-                    dataFetcher StarWarsDataUtils.reviewDataFetcher)
+            .field(newField("createReview",createReview)
+                    .argument (GQLArgumentBuilder("ep").type(episodeNum))
+                    .argument (GQLArgumentBuilder("review").type(review))
+                    .dataFetcher(StarWarsDataUtils.reviewDataFetcher))
 
     /**
      * Star wars schema.
